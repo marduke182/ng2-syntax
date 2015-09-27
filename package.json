@@ -2,11 +2,12 @@
   "name": "ng2-syntax",
   "description": "Simulate angular2 syntax in the angular1 projects",
   "version": "0.0.0-semmantically-released",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
+    "commit": "git-cz",
     "precompile": "rm -rf dist/ && mkdir dist",
     "compile": "babel src --out-dir dist",
     "prepublish": "npm run compile",
@@ -35,8 +36,8 @@
     "babel-core": "^5.8.25",
     "babel-loader": "^5.3.2",
     "chai": "^3.3.0",
-    "commitizen": "^1.0.4",
-    "cz-conventional-changelog": "^1.1.1",
+    "commitizen": "1.0.4",
+    "cz-conventional-changelog": "1.1.0",
     "karma": "^0.13.10",
     "karma-chai": "^0.1.0",
     "karma-mocha": "^0.2.0",
