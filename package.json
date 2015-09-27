@@ -1,0 +1,55 @@
+{
+  "name": "ng2-syntax",
+  "description": "Simulate angular2 syntax in the angular1 projects",
+  "version": "0.0.0-semmantically-released",
+  "main": "src/index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "precompile": "rm -rf dist/ && mkdir dist",
+    "compile": "babel src --out-dir dist",
+    "prepublish": "npm run compile",
+    "test": "karma start karma.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marduke182/ng2-syntax.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "annotations",
+    "decorators"
+  ],
+  "author": "Jesus Quintana <jrqb182@gmail.com> (http://jquintanab.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marduke182/ng2-syntax/issues"
+  },
+  "homepage": "https://github.com/marduke182/ng2-syntax#readme",
+  "devDependencies": {
+    "angular-mocks": "^1.4.6",
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "chai": "^3.3.0",
+    "commitizen": "^1.0.4",
+    "cz-conventional-changelog": "^1.1.1",
+    "karma": "^0.13.10",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.1.1",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-sourcemap-loader": "^0.3.5",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.3.3",
+    "phantomjs": "^1.9.18",
+    "semantic-release": "^4.3.5",
+    "webpack": "^1.12.2"
+  },
+  "dependencies": {
+    "angular": "^1.4.6"
+  }
+}
