@@ -1,18 +1,18 @@
 # ng2-syntax
-Is well know that the syntax in the new major version of angular change. But you could use a similar syntax in your current code, if you are writing in ES6 or you plan to migrate to es6 in a future.
+It is well known that syntax  is going to change in the new major version of angular. But you could use a similar syntax in your current code, if you are coding in ES6 or are planning to migrate to ES6  in the future.
 
 # Angular1 code on ES6
 
-I have been migrating my angular applications to ES6 and i have had an evolutive code the last months. In a series of post i`m going to explain my diferents approach and why this was my final solutions.
+I have been migrating all my angular applications to ES6 and I have been using an evolutive approach for it the last months. In this series of posts i'm going to explain the different approaches used and why this was my final solution.
 
 ## Angular Module as ES6 modules
 
 This approach is easy:
 
-* Each directive, service, factory, filter, etc. Is an angular module and live in an ES6 Module that the default export is the name of the angular module. (Angular performances is not affected by the num of the modules, only the initial load).
-* Each module import all his dependencies. (Fully testeable without require all the context).
+* Each directive, service, factory, filter, etc. is an angular module that lives in an ES6 Module whose default export is the name of the angular module. (Angular performance is not affected by the number of modules, only the initial load)..
+* Each module imports all its dependencies. (Fully testable without requiring all the context).
 
-This allow me to this:
+This allows me to do this:
 
 ```javascript
 // todoComponent/todoComponent.js
@@ -50,9 +50,9 @@ export default angular
                 .name
 ```
 
-## Using Decorators for less repeated code
+## Using Decorators and minimizing code duplication
 
-I realize that i have been repeat the same code in almost all my directives.
+I realized that I had been repeating the same code in almost all of my directives.
 
 ```javascript
 {
@@ -64,8 +64,7 @@ I realize that i have been repeat the same code in almost all my directives.
 }
 ```
 
-And looking the new syntax i thougth, why not use ES7 Decorator and remove the repeated code, Now i can write the before example like this:
-
+Looking at the new syntax I thought, why not use ES7 Decorators to remove boilerplate code?, Now the previous example can be written like this:
 
 ```javascript
 // todoComponent/todoComponent.js
@@ -106,9 +105,9 @@ export default angular
                 .directive('todoItem', ItemController.component).name
 ```
 
-## Using Utils for export modules
+## Using Utils for exporting modules
 
-Angular modules has a big error. If both modules with the same name are instanced, the last one is the final registered. This could mask your errors and is hard to debug. Well my solutions was the creation of Utils function that create a module with an unique name (The name is not needed, everytime you need to used it import the module and use the default value). The original code with the new utils:
+Angular modules has a big caveat. If two modules with the same name are instanced, the last one is the one that is registered. This could mask your errors and make it really hard to debug. My solution for this was the creation of an Utils function to create a module with an unique name (The name is not needed, every time you need to use it import the module and use the default value). The original code with the new utils looks like this:
 
 ```javascript
 // todoComponent/todoComponent.js
@@ -167,3 +166,4 @@ TODO
 * Finish the test suite
 * Add code coverage (Try isparta-loader for webpack)
 * Finish documentation
+
