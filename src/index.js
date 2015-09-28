@@ -102,15 +102,13 @@ export function exportAsNgModule(target, {name = target.$moduleName, dependencie
   const module = angular
   .module(name, dependencies);
 
-  if (__DEV__) {
-    console.log(`Module name is: ${name}, with dependencies as: ${JSON.stringify(dependencies)}, `,target.component ? target.component() : {}) //eslint-disable-line
-  }
-
   // The structure else if to assure the single responsability in each module (Each angular module only have exact one element)
   if (target.$componentName) {
     module.directive(target.$componentName, target.component);
   } else if (target.$factoryName) {
     module.factory(target.$factoryName, target);
+  } else if (target.$serviceName) {
+    module.service(target.$serviceName, target);
   } else if (target.$filterName) {
     module.filter(target.$filterName, target);
   }
@@ -132,6 +130,24 @@ export function exportFactoryAsNgModule(target, { name, moduleName, dependencies
   }
   target.$moduleName = uniqueId({prefix: `${moduleName || name}_`});
   target.$factoryName = name;
+
+  return exportAsNgModule(target, { dependencies });
+}
+
+/**
+ * Given a function create a angular module with a service
+ * @param  {Function|Array} target Function to be created in the angular module
+ * @param  {String} name Factory name to be used in anothers elements
+ * @param  {String} moduleName Optional
+ * @param  {Array} dependencies
+ * @return {String} Angular module name
+ */
+export function exportServiceAsNgModule(target, { name, moduleName, dependencies = []  } = {}) {
+  if (!name) {
+    throw new Error('Cannot create a service without a name');
+  }
+  target.$moduleName = uniqueId({prefix: `${moduleName || name}_`});
+  target.$serviceName = name;
 
   return exportAsNgModule(target, { dependencies });
 }
